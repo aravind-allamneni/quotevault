@@ -14,13 +14,29 @@ const Feed = () => {
         }
         fetchQuotes();
     }, [])
+
+    const handleTagClick = (tag) => {
+        const filteredQuotes = quotes.filter((quote) => quote.tag===tag);
+        setQuotes(filteredQuotes);
+    }
+
+    const handleEdit = () => {
+
+    }
+
+    const handleDelete = () => {
+
+    }
   return (
-    <section className="feed">
-        <div className="mt-16 prompt_layout">
+    <section className="feed flex flex-row w-screen">
+        <div className="mt-16 prompt_layout justify-items-center">
             {quotes.map((quote) => (
                 <QuoteCard 
                     key={quote._id}
                     quote={quote}
+                    handleTagClick={handleTagClick}
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
                 />
             ))}
         </div>

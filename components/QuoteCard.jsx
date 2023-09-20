@@ -3,9 +3,10 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
-const QuoteCard = ({quote}) => {
+const QuoteCard = ({quote, handleTagClick, handleEdit, handleDelete}) => {
   const {data: session} = useSession();
   const pathName = usePathname();
+
   return (
     <div className="quote_card">
       <div>
