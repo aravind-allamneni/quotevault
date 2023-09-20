@@ -30,7 +30,6 @@ const AddQuote = () => {
         }
       } catch (error) {
         console.log(error);
-
       }
     }
 

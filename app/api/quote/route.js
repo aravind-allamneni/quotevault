@@ -4,7 +4,7 @@ import { connectToDB } from "@utils/database";
 export const GET = async (req, res) => {
   try {
     await connectToDB();
-    const quotes = await Quote.find({});
+    const quotes = await Quote.find({}).populate("creator");
     if (quotes.length > 0) {
       return new Response(JSON.stringify(quotes), { status: 200 });
     } else {

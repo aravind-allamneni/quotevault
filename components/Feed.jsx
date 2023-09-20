@@ -20,10 +20,7 @@ const Feed = () => {
             {quotes.map((quote) => (
                 <QuoteCard 
                     key={quote._id}
-                    text={quote.text}
-                    author={quote.author}
-                    creator={quote.creator}
-                    tag={quote.tag}
+                    quote={quote}
                 />
             ))}
         </div>
