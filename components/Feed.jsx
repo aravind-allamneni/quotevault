@@ -28,15 +28,13 @@ const Feed = () => {
 
     }
   return (
-    <section className="feed flex flex-row w-screen">
-        <div className="mt-16 prompt_layout justify-items-center">
+    <section className="feed">
+        <div className="mt-16 quote_layout">
             {quotes.map((quote) => (
                 <QuoteCard 
                     key={quote._id}
                     quote={quote}
                     handleTagClick={handleTagClick}
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete}
                 />
             ))}
         </div>
