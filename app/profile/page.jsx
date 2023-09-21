@@ -13,9 +13,13 @@ const ProfilePage = () => {
 
     useEffect(() => {
         const fetchQuotes = async () => {
-            const response = await fetch(`/api/quote?creator=${session?.user?.id}`)
-            const data = await response.json();
-            setQuotes(data);
+            try {
+                const response = await fetch(`/api/quote?creator=${session?.user?.id}`);
+                const data = await response.json();
+                setQuotes(data);
+            } catch (error) {
+                console.log(error);
+            }
         }
         fetchQuotes();
     }, [])
