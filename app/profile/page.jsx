@@ -10,6 +10,7 @@ import Profile from "@components/Profile";
 const ProfilePage = () => {
     const {data: session} = useSession();
     const [quotes, setQuotes] = useState([]);
+    const router = useRouter();
 
     useEffect(() => {
         const fetchQuotes = async () => {
@@ -24,11 +25,16 @@ const ProfilePage = () => {
         fetchQuotes();
     }, [])
 
+    const handleEdit = (quote) => {
+        router.push(`/update-quote?id=${quote._id}`);
+    }
+
   return (
     <div>
         <Profile 
             name={session?.user.name}
             data={quotes}
+            handleEdit={handleEdit}
         />
     </div>
   )
