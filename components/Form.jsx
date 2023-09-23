@@ -1,11 +1,11 @@
 import Link from "next/link"
 
-const Form = ({ type, quote, setQuote, submitting, handleSubmit }) => {
+const Form = ({ type, quote, setQuote, submitting, handleSubmit, updateQuote }) => {
   return (
     <section className="w-full max-w-full flex-start flex-col">
       <h1 className="head_text text-left">
         <span className="green_gradient">
-        {type} Post
+        {type} Quote
         </span>
       </h1>
       <p className="desc text-left max-w-md">
@@ -13,7 +13,7 @@ const Form = ({ type, quote, setQuote, submitting, handleSubmit }) => {
         let your inspiration spread across to others.
       </p>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={updateQuote ? updateQuote : handleSubmit}
         className="mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism"
       >
         {/* quote text */}

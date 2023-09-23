@@ -18,7 +18,7 @@ export const GET = async (req, { params }) => {
 };
 
 export const PATCH = async (req, { params }) => {
-  const { author, text, tag, creator } = await req.json();
+  const { author, text, tag } = await req.json();
   try {
     await connectToDB();
     const existingQuote = await Quote.findById(params.id);
@@ -29,7 +29,6 @@ export const PATCH = async (req, { params }) => {
     existingQuote.author = author;
     existingQuote.text = text;
     existingQuote.tag = tag;
-    existingQuote.creator = creator;
 
     await existingQuote.save();
     return new Response(JSON.stringify(existingQuote, { status: 200 }));

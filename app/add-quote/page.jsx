@@ -26,6 +26,7 @@ const AddQuote = () => {
           })
         });
         if(response.ok){
+          setSubmitting(false);
           router.push("/")
         }
       } catch (error) {

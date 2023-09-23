@@ -10,25 +10,23 @@ const UpdateQuote = () => {
     const [quote, setQuote] = useState({
         author: "",
         text: "",
-        tag: "",
-        creator: ""
+        tag: ""
     })
     const [submitting, setSubmitting] = useState(false);
     const {data: session} = useSession();
     const router = useRouter();
 
     const searchParams = useSearchParams();
-    const quoteId = searchParams.get("id")
+    const quoteId = searchParams.get("id");
 
     useEffect(() => {
         const getQuote = async() => {
-            const response = await fetch(`/api/prompt/${quoteId}`);
+            const response = await fetch(`/api/quote/${quoteId}`);
             const data = await response.json();
             setQuote({
                 author: data.author,
                 text: data.text,
-                tag: data.tag,
-                creator: data.creator
+                tag: data.tag
             })
         };
         if(quoteId) getQuote();
@@ -37,24 +35,24 @@ const UpdateQuote = () => {
     const updateQuote = async(e) => {
         e.preventDefault();
         setSubmitting(true);
-
         if(!quoteId) return alert("Quote ID not found");
-
         try {
-            const response = await fetch(`api/quote/${id}`, {
+            console.log("try catch for updateQuote called");
+            const response = await fetch(`/api/quote/${quoteId}`, {
                 method: "PATCH",
                 body: JSON.stringify({
                     text: quote.text,
                     author: quote.author,
-                    tag: quote.tag,
-                    author: quote.author
+                    tag: quote.tag
                 })
             });
             if(response.ok){
+                setSubmitting(false);
                 return router.push("/");
             }
         } catch (error) {
-            
+            console.log(error);
+            return("Internal Server error");
         }
     }
 
@@ -64,7 +62,7 @@ const UpdateQuote = () => {
         quote={quote}
         setQuote={setQuote}
         submitting={submitting}
-        handleSubmit={updateQuote}
+        updateQuote={updateQuote}
     />
   )
 }

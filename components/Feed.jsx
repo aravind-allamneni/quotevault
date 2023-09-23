@@ -20,13 +20,6 @@ const Feed = () => {
         setQuotes(filteredQuotes);
     }
 
-    const handleEdit = () => {
-
-    }
-
-    const handleDelete = () => {
-
-    }
   return (
     <section className="feed">
         <div className="mt-16 quote_layout">
