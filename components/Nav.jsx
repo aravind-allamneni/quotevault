@@ -66,6 +66,57 @@ const Nav = () => {
                 </>
             )}
             </div>
+            {/* Mobile Navigation */}
+            <div className="sm:hidden flex relative">
+                {session?.user ? (
+                    <div className="flex">
+                        <Image 
+                            src={session?.user?.image}
+                            alt="profile picture"
+                            width={30}
+                            height={30}
+                            className="object-contain"
+                            onClick={() => setToggleDropdown((prev) => !prev)}
+                        />
+                        {toggleDropdown && (
+                        <div className="dropdown">
+                            <Link 
+                                href="/profile"
+                                className="dropdown_link"
+                                onClick={() => setToggleDropdown(false)}
+                            >
+                                My Profile
+                            </Link>
+                            <Link 
+                                href="/add-quote"
+                                className="dropdown_link"
+                                onClick={() => setToggleDropdown(false)}
+                            >
+                                Add Quote
+                            </Link>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setToggleDropdown(false);
+                                    signOut();
+                                }}
+                                className="mt-5 w-full black_btn"
+                            >
+                                Sign Out
+                            </button>
+                        </div>
+                        )}
+                    </div>  
+                ) : (
+                    <>
+                    {providers && Object.values(providers).map((provider) => (
+                        <button type="button" key={provider.name} onClick={() => signIn(provider.id)}>
+                            Sign In
+                        </button>
+                    ))}
+                    </>
+                )}
+            </div>
         </nav>
     );
 }
