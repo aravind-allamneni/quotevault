@@ -37,3 +37,14 @@ export const PATCH = async (req, { params }) => {
     return new Response("Failed to update prompt", { status: 500 });
   }
 };
+
+export const DELETE = async (req, { params }) => {
+  try {
+    await connectToDB();
+    await Quote.findByIdAndRemove(params.id);
+    return new Response("Deleted Successfully", { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return new Response("Failed to delete quote", { status: 500 });
+  }
+};
